@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sentinel-monitors-stack
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sentinel
+  sources:
+    - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+      targetRevision: main
+      path: sentinel-stack/monitors
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
