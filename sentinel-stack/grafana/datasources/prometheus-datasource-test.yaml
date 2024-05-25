@@ -13,18 +13,11 @@ data:
     datasources:
     - name: Prometheus-test
       type: prometheus
-      uid: prometheus
+      uid: prometheus-test
       url: http://sentinel-prometheus.sentinel:9090/
       access: proxy
       isDefault: true
       jsonData:
         httpMethod: POST
         timeInterval: 30s
-    - name: Alertmanager
-      type: alertmanager
-      uid: alertmanager
-      url: http://sentinel-alertmanager.sentinel:9093/
-      access: proxy
-      jsonData:
-        handleGrafanaManagedAlerts: false
-        implementation: prometheus
+
