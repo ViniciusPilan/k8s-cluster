@@ -1639,7 +1639,8 @@ alertmanager:
 
     ## Additional labels
     ##
-    additionalLabels: {}
+    additionalLabels:
+      prometheus: sentinel
 
     ## SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
     ##
