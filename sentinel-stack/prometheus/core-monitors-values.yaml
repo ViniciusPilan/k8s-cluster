@@ -72,8 +72,8 @@ kubeApiServer:
 
     ## Additional labels
     ##
-    additionalLabels: {}
-    #  foo: bar
+    additionalLabels:
+      prometheus: sentinel
 
 ## Component scraping the kubelet and kubelet-hosted cAdvisor
 ##
@@ -278,8 +278,8 @@ kubelet:
 
     ## Additional labels
     ##
-    additionalLabels: {}
-    #  foo: bar
+    additionalLabels:
+      prometheus: sentinel
 
 ## Component scraping the kube controller manager
 ##
@@ -381,8 +381,8 @@ kubeControllerManager:
 
     ## Additional labels
     ##
-    additionalLabels: {}
-    #  foo: bar
+    additionalLabels:
+      prometheus: sentinel
 
 ## Component scraping coreDns. Use either this or kubeDns
 ##
@@ -459,8 +459,8 @@ coreDns:
 
     ## Additional labels
     ##
-    additionalLabels: {}
-    #  foo: bar
+    additionalLabels:
+      prometheus: sentinel
 
 ## Component scraping kubeDns. Use either this or coreDns
 ##
@@ -553,8 +553,8 @@ kubeDns:
 
     ## Additional labels
     ##
-    additionalLabels: {}
-    #  foo: bar
+    additionalLabels:
+      prometheus: sentinel
 
 ## Component scraping etcd
 ##
@@ -658,8 +658,8 @@ kubeEtcd:
 
     ## Additional labels
     ##
-    additionalLabels: {}
-    #  foo: bar
+    additionalLabels:
+      prometheus: sentinel
 
 ## Component scraping kube scheduler
 ##
@@ -760,8 +760,8 @@ kubeScheduler:
 
     ## Additional labels
     ##
-    additionalLabels: {}
-    #  foo: bar
+    additionalLabels:
+      prometheus: sentinel
 
 ## Component scraping kube proxy
 ##
@@ -848,5 +848,5 @@ kubeProxy:
 
     ## Additional labels
     ##
-    additionalLabels: {}
-    #  foo: bar
+    additionalLabels:
+      prometheus: sentinel
