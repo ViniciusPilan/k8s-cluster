@@ -9,14 +9,17 @@ spec:
     server: https://kubernetes.default.svc
     namespace: sentinel
   sources:
+    - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+      targetRevision: main
+      ref: repository
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack 
       targetRevision: 58.7.2
       helm:
         releaseName: prometheus-operator
         valueFiles:
-        - commom-values.yaml
-        - operator-values.yaml
+        - $repository/observability-stack/commom-values.yaml
+        - $repository/observability-stack/operator-values.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
