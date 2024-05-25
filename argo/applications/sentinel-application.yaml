@@ -12,6 +12,7 @@ spec:
     - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
       targetRevision: main
       ref: repository
+    # <----------------------- Operator ----------------------->
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack 
       targetRevision: 58.7.2
@@ -20,6 +21,7 @@ spec:
         valueFiles:
         - $repository/sentinel-stack/commom-values.yaml
         - $repository/sentinel-stack/operator-values.yaml
+    # <----------------------- Prometheus ----------------------->
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack 
       targetRevision: 58.7.2
@@ -28,6 +30,15 @@ spec:
         valueFiles:
         - $repository/sentinel-stack/commom-values.yaml
         - $repository/sentinel-stack/prometheus-values.yaml
+    # <----------------------- Grafana ----------------------->
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack 
+      targetRevision: 58.7.2
+      helm:
+        releaseName: grafana
+        valueFiles:
+        - $repository/sentinel-stack/commom-values.yaml
+        - $repository/sentinel-stack/grafana-values.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
