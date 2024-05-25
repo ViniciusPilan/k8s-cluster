@@ -22,7 +22,7 @@ grafana:
   ##
   defaultDashboardsEditable: true
 
-  adminPassword: "123"
+  adminPassword: "prom-operator"
 
   rbac:
     ## If true, Grafana PSPs will be created
