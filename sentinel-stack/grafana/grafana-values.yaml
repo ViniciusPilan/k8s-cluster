@@ -109,8 +109,8 @@ grafana:
       defaultDatasourceEnabled: true
       isDefaultDatasource: true
 
-      name: Prometheus
-      uid: prometheus
+      # name: Prometheus
+      # uid: prometheus
 
       ## URL of prometheus datasource
       ##
@@ -143,7 +143,7 @@ grafana:
         # datasourceUid: Jaeger
         # traceIdLabelName: trace_id
       alertmanager:
-        enabled: true
+        enabled: false
         name: Alertmanager
         uid: alertmanager
         handleGrafanaManagedAlerts: false
