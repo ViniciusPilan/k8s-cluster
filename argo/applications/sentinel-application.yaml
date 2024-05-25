@@ -20,7 +20,7 @@ spec:
         releaseName: prometheus-operator
         valueFiles:
         - $repository/sentinel-stack/commom-values.yaml
-        - $repository/sentinel-stack/operator-values.yaml
+        - $repository/sentinel-stack/prometheus/operator-values.yaml
     # <----------------------- Prometheus ---------------------->
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack 
@@ -29,7 +29,7 @@ spec:
         releaseName: prometheus
         valueFiles:
         - $repository/sentinel-stack/commom-values.yaml
-        - $repository/sentinel-stack/prometheus-values.yaml
+        - $repository/sentinel-stack/prometheus/prometheus-values.yaml
     # <----------------------- Grafana ------------------------->
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack 
@@ -38,7 +38,7 @@ spec:
         releaseName: grafana
         valueFiles:
         - $repository/sentinel-stack/commom-values.yaml
-        - $repository/sentinel-stack/grafana-values.yaml
+        - $repository/sentinel-stack/grafana/grafana-values.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

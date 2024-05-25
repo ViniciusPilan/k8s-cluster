@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sentinel-monitors-stack
+  name: sentinel-stack-subcomponents
   namespace: argocd
 spec:
   project: default
@@ -9,9 +9,23 @@ spec:
     server: https://kubernetes.default.svc
     namespace: sentinel
   sources:
+    # <----------------- Prometheus Monitors ----------------->
     - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
       targetRevision: main
-      path: sentinel-stack/monitors
+      path: sentinel-stack/prometheus/monitors
+    # <---------------- Prometheus Rules --------------------->
+    - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+      targetRevision: main
+      path: sentinel-stack/prometheus/rules
+    # <-------------- Grafana Dashboards --------------------->
+    - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+      targetRevision: main
+      path: sentinel-stack/grafana/dashboards
+    # <-------------- Grafana Datasources -------------------->
+    - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+      targetRevision: main
+      path: sentinel-stack/grafana/datasources
+
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
