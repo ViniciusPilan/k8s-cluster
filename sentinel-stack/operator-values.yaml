@@ -712,7 +712,7 @@ prometheusOperator:
 
   ## Set a Label Selector to filter watched prometheus and prometheusAgent
   ##
-  prometheusInstanceSelector: ""
+  prometheusInstanceSelector: "stack=sentinel"
 
   ## Set a Label Selector to filter watched alertmanager
   ##
