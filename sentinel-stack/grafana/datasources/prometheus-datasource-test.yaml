@@ -5,7 +5,7 @@ metadata:
     app: grafana
     grafana_datasource: "1"
     stack: sentinel
-  name: prometheus-datasource
+  name: prometheus-datasource-test
   namespace: sentinel
 data:
   datasource.yaml: |-
