@@ -498,7 +498,7 @@ prometheusOperator:
   serviceMonitor:
     ## If true, create a serviceMonitor for prometheus operator
     ##
-    selfMonitor: true
+    selfMonitor: false
 
     ## Labels for ServiceMonitor
     additionalLabels:

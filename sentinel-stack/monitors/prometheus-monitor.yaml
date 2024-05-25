@@ -2,22 +2,23 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    app: grafana
+    app: sentinel-prometheus
     prometheus: sentinel
-  name: grafana
+    release: prometheus
+    stack: sentinel
+  name: sentinel-prometheus
   namespace: sentinel
 spec:
   endpoints:
-  - honorLabels: true
-    path: /metrics
+  - path: /metrics
     port: http-web
-    scheme: http
-    scrapeTimeout: 30s
-  jobLabel: grafana
+  - path: /metrics
+    port: reloader-web
   namespaceSelector:
     matchNames:
     - sentinel
   selector:
     matchLabels:
       app.kubernetes.io/instance: sentinel-stack
-      app.kubernetes.io/name: grafana
+      app: sentinel-prometheus
+      release: prometheus

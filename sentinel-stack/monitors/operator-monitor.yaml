@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: sentinel-operator
+    prometheus: sentinel
+    stack: sentinel
+  name: sentinel-operator
+  namespace: sentinel
+spec:
+  endpoints:
+  - honorLabels: true
+    port: https
+    scheme: https
+    tlsConfig:
+      ca:
+        secret:
+          key: ca
+          name: sentinel-admission
+          optional: false
+      serverName: sentinel-operator
+  namespaceSelector:
+    matchNames:
+    - sentinel
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: sentinel-stack
+      app: sentinel-operator
+      release: prometheus-operator
