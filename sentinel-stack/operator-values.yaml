@@ -501,7 +501,8 @@ prometheusOperator:
     selfMonitor: true
 
     ## Labels for ServiceMonitor
-    additionalLabels: {}
+    additionalLabels:
+      prometheus: sentinel
 
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##

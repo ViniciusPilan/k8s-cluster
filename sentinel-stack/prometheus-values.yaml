@@ -411,7 +411,8 @@ prometheus:
 
     ## Additional labels
     ##
-    additionalLabels: {}
+    additionalLabels: 
+      prometheus: sentinel
 
     ## SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
     ##
@@ -660,11 +661,10 @@ prometheus:
     ## ServiceMonitors to be selected for target discovery.
     ## If {}, select all ServiceMonitors
     ##
-    serviceMonitorSelector: {}
     ## Example which selects ServiceMonitors with label "prometheus" set to "somelabel"
-    # serviceMonitorSelector:
-    #   matchLabels:
-    #     prometheus: somelabel
+    serviceMonitorSelector:
+      matchLabels:
+        prometheus: sentinel
 
     ## Namespaces to be selected for ServiceMonitor discovery.
     ##
@@ -683,11 +683,10 @@ prometheus:
     ## PodMonitors to be selected for target discovery.
     ## If {}, select all PodMonitors
     ##
-    podMonitorSelector: {}
     ## Example which selects PodMonitors with label "prometheus" set to "somelabel"
-    # podMonitorSelector:
-    #   matchLabels:
-    #     prometheus: somelabel
+    podMonitorSelector:
+      matchLabels:
+        prometheus: sentinel
 
     ## If nil, select own namespace. Namespaces to be selected for PodMonitor discovery.
     podMonitorNamespaceSelector: {}
