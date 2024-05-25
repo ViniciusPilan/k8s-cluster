@@ -407,7 +407,7 @@ prometheus:
   serviceMonitor:
     ## If true, create a serviceMonitor for prometheus
     ##
-    selfMonitor: false
+    selfMonitor: true
 
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
