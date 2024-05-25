@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: grafana
+    grafana_datasource: "1"
+    stack: sentinel
+  name: prometheus-datasource
+  namespace: sentinel
+data:
+  datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+    - name: Prometheus-test
+      type: prometheus
+      uid: prometheus
+      url: http://sentinel-prometheus.sentinel:9090/
+      access: proxy
+      isDefault: true
+      jsonData:
+        httpMethod: POST
+        timeInterval: 30s
+    - name: Alertmanager
+      type: alertmanager
+      uid: alertmanager
+      url: http://sentinel-alertmanager.sentinel:9093/
+      access: proxy
+      jsonData:
+        handleGrafanaManagedAlerts: false
+        implementation: prometheus
