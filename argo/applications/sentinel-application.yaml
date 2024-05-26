@@ -58,7 +58,7 @@ spec:
         valueFiles:
         - $repository/sentinel-stack/mimir/mimir-values.yaml
     # <----------------------- Loki ------------------------->
-    # - repoURL: https://grafana.github.io/helm-charts
+    - repoURL: https://grafana.github.io/helm-charts
       chart: loki-stack
       targetRevision: 2.10.2 
       helm:

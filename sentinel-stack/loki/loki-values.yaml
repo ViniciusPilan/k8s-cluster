@@ -1,11 +1,6 @@
-test_pod:
-  enabled: false
-  image: bats/bats:1.8.2
-  pullPolicy: IfNotPresent
-
 loki:
   enabled: true
-  isDefault: true
+  isDefault: false
   url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
   readinessProbe:
     httpGet:
@@ -28,6 +23,9 @@ promtail:
     serverPort: 3101
     clients:
       - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
+
+test_pod:
+  enabled: false
 
 fluent-bit:
   enabled: false

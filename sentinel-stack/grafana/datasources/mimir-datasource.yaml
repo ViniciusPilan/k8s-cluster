@@ -2,9 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    app: grafana
+    app: mimir
     grafana_datasource: "1"
-    stack: sentinel
   name: mimir-datasource
   namespace: sentinel
 data:

@@ -2,9 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    app: grafana
+    app: prometheus
     grafana_datasource: "1"
-    stack: sentinel
   name: prometheus-datasource
   namespace: sentinel
 data:
