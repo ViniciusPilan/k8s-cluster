@@ -31,6 +31,15 @@ spec:
         - $repository/sentinel-stack/commom-values.yaml
         - $repository/sentinel-stack/prometheus/prometheus-values.yaml
         - $repository/sentinel-stack/prometheus/core-monitors-values.yaml
+    # <----------------------- Node exporter ---------------------->
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack 
+      targetRevision: 58.7.2
+      helm:
+        releaseName: node-exporter
+        valueFiles:
+        - $repository/sentinel-stack/commom-values.yaml
+        - $repository/sentinel-stack/prometheus/node-exporter/node-exporter-values.yaml
     # <----------------------- Grafana ------------------------->
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack 
