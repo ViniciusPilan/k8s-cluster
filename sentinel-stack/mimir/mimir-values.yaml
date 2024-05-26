@@ -1,4 +1,4 @@
-# fullnameOverride: mimir
+fullnameOverride: mimir
 
 
 # -- Overrides the chart's computed fullname. Used to change the full prefix of resource names. E.g. myRelease-mimir-ingester-1 to fullnameOverride-ingester-1.
