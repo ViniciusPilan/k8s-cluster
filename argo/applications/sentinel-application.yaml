@@ -57,6 +57,14 @@ spec:
         releaseName: mimir
         valueFiles:
         - $repository/sentinel-stack/mimir/mimir-values.yaml
+    # <----------------------- Loki ------------------------->
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: loki
+      targetRevision: 6.6.1 
+      helm:
+        releaseName: loki
+        valueFiles:
+        - $repository/sentinel-stack/loki/loki-values.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
