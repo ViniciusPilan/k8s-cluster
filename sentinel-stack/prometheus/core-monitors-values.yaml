@@ -845,7 +845,7 @@ kube-state-metrics:
   releaseLabel: true
   prometheus:
     monitor:
-      enabled: true
+      enabled: false
 
       ## Scrape interval. If not set, the Prometheus default scrape interval is used.
       ##
@@ -903,4 +903,4 @@ kube-state-metrics:
       #   action: replace
 
   selfMonitor:
-    enabled: true
+    enabled: false
