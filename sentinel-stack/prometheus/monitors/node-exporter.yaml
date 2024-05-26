@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: node-exporter
+    prometheus: sentinel
+    release: node-exporter
+  name: node-exporter-prometheus-node-exporter
+  namespace: sentinel
+spec:
+  attachMetadata:
+    node: false
+  endpoints:
+  - port: http-metrics
+    scheme: http
+  jobLabel: jobLabel
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: node-exporter
+      app.kubernetes.io/name: prometheus-node-exporter

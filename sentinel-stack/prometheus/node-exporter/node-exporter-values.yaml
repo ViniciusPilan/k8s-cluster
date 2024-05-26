@@ -32,7 +32,7 @@ prometheus-node-exporter:
       ipFamilyPolicy: "PreferDualStack"
   prometheus:
     monitor:
-      enabled: true
+      enabled: false
 
       jobLabel: jobLabel
 
