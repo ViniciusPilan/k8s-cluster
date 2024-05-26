@@ -1,3 +1,5 @@
+fullnameOverride: sentinel
+
 ## Deploy node exporter as a daemonset to all nodes
 ##
 nodeExporter:
