@@ -1,4 +1,4 @@
-# fullnameOverride: prometheus
+fullnameOverride: sentinel
 
 global:
   rbac:
