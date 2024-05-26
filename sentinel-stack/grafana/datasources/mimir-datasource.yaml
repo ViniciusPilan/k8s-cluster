@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: grafana
+    grafana_datasource: "1"
+    stack: sentinel
+  name: mimir-datasource
+  namespace: sentinel
+data:
+  datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+    - name: Mimir
+      type: prometheus
+      uid: mimir
+      url: http://mimir-sentinel-nginx.sentinel.svc/prometheus
+      access: proxy
+      isDefault: true
+      jsonData:
+        httpMethod: POST
+        timeInterval: 30s
