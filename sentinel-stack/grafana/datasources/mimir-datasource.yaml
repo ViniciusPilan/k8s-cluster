@@ -14,7 +14,7 @@ data:
     - name: Mimir
       type: prometheus
       uid: mimir
-      url: http://mimir-sentinel-nginx.sentinel.svc/prometheus
+      url: http://mimir-nginx.sentinel.svc/prometheus
       access: proxy
       isDefault: true
       jsonData:
