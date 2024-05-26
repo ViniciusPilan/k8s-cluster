@@ -49,6 +49,14 @@ spec:
         valueFiles:
         - $repository/sentinel-stack/commom-values.yaml
         - $repository/sentinel-stack/grafana/grafana-values.yaml
+    # <----------------------- Mimir ------------------------->
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: grafana/mimir-distributed
+      targetRevision: mimir-distributed-5.3.0 
+      helm:
+        releaseName: mimir
+        valueFiles:
+        - $repository/sentinel-stack/mimir/mimir-values.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
