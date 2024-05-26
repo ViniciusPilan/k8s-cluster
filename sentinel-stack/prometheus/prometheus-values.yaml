@@ -1,3 +1,5 @@
+# fullnameOverride: prometheus
+
 global:
   rbac:
     create: true

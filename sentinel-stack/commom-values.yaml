@@ -1,5 +1,5 @@
-nameOverride: "sentinel"
-fullnameOverride: "sentinel"
+# nameOverride: "sentinel"
+# fullnameOverride: "sentinel"
 
 commonLabels:
   stack: sentinel

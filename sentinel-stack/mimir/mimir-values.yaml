@@ -1,30 +1,5 @@
-# Grafana Enterprise Metrics specific values and features are found after the `enterprise:` key
-#
-# The default values specified in this file are enough to deploy all of the
-# Grafana Mimir or Grafana Enterprise Metrics microservices but are not suitable for
-# production load.
-# To configure the resources for production load, refer to the small.yaml or
-# large.yaml values files.
+# fullnameOverride: mimir
 
-# Note: The values in this file are not backward compatible. Copying and pasting the values is discouraged, but if you do so,
-# make sure to use the values.yaml from the branch or tag that matches the mimir-distributed Helm chart version that you
-# want to install. You also can see values.yaml for a specific version by running
-# `helm show values grafana/mimir-distributed --version <version>`
-
-# If you want to get the values file from Github, build the URL as follows because we git tag every release:
-# `https://github.com/grafana/mimir/blob/mimir-distributed-<chart-version>/operations/helm/charts/mimir-distributed/values.yaml`.
-# For example, https://github.com/grafana/mimir/blob/mimir-distributed-3.1.0/operations/helm/charts/mimir-distributed/values.yaml.
-
-# -- Overrides the version used to determine compatibility of resources with the target Kubernetes cluster.
-# This is useful when using `helm template`, because then helm will use the client version of kubectl as the Kubernetes version,
-# which may or may not match your cluster's server version. Example: 'v1.24.4'. Set to null to use the version that helm
-# devises.
-kubeVersionOverride: null
-
-# -- Overrides the chart's name. Used to change mimir/enterprise-metrics infix in the resource names. E.g. myRelease-mimir-ingester-1 to myRelease-nameOverride-ingester-1.
-# This option is used to align resource names with Cortex, when doing a migration from Cortex to Grafana Mimir.
-# Note: Grafana provided dashboards rely on the default naming and will need changes.
-nameOverride: sentinel
 
 # -- Overrides the chart's computed fullname. Used to change the full prefix of resource names. E.g. myRelease-mimir-ingester-1 to fullnameOverride-ingester-1.
 # Note: Grafana provided dashboards rely on the default naming and will need changes.
