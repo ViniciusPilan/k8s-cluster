@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linkerd-crds
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: linkerd
+  sources:
+    - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+      targetRevision: main
+      ref: repository
+    # <----------------------- Linkerd ------------------------>
+    - repoURL: https://helm.linkerd.io/edge
+      chart: linkerd-crds
+      targetRevision: 2024.5.4
+      helm:
+        releaseName: linkerd-crdr
+        valueFiles:
+        - $repository/linkerd/linkerd-values.yaml
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
