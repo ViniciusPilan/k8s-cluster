@@ -1403,7 +1403,7 @@ alertmanager:
           - alertname = "Watchdog"
     receivers:
     - name: 'null'
-      url: http://localhost:8081/print_payload
+      url: http://10.244.0.54:8081/print_payload
     templates:
     - '/etc/alertmanager/config/*.tmpl'
 

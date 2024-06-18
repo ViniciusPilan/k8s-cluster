@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: api
+  name: api
+spec:
+  containers:
+  - image: rapidfort/flaskapp
+    name: api
+    command: ["python3"]
+    args:
+      - /home/main.py  # Run the script from the mounted volume
+    volumeMounts:
+      - name: script-volume
+        mountPath: /home  # Mount path inside the container
+  volumes:
+    - name: script-volume
+      configMap:
+        name: example-script  # Name of the ConfigMap containing the script
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
