@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metrics-stack
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+    targetRevision: echo-api
+    ref: values
+  - repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 61.7.0
+    helm:
+      valueFiles:
+      - $values/cluster/envs/dev/echo-api/values.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: metrics
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
