@@ -20,7 +20,7 @@ kubeVersionOverride: ""
 
 ## Provide a name to substitute for the full names of resources
 ##
-fullnameOverride: "metrics"
+fullnameOverride: "sentinel"
 
 ## Labels to apply to all resources
 ##
