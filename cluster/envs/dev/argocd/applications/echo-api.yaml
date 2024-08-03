@@ -11,4 +11,4 @@ spec:
     path: cluster/envs/dev/echo-api
   destination:
     server: https://kubernetes.default.svc
-    namespace: guestbook
+    namespace: default
