@@ -231,36 +231,8 @@ global:
   # - "image-pull-secret"
 
 windowsMonitoring:
-  ## Deploys the windows-exporter and Windows-specific dashboards and rules (job name must be 'windows-exporter')
   enabled: false
 
-## Configuration for prometheus-windows-exporter
-## ref: https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-windows-exporter
-##
-prometheus-windows-exporter:
-  ## Enable ServiceMonitor and set Kubernetes label to use as a job label
-  ##
-  prometheus:
-    monitor:
-      enabled: true
-      jobLabel: jobLabel
-
-  releaseLabel: true
-
-  ## Set job label to 'windows-exporter' as required by the default Prometheus rules and Grafana dashboards
-  ##
-  podLabels:
-    jobLabel: windows-exporter
-
-  ## Enable memory and container metrics as required by the default Prometheus rules and Grafana dashboards
-  ##
-  config: |-
-    collectors:
-      enabled: '[defaults],memory,container'
-
-## Configuration for alertmanager
-## ref: https://prometheus.io/docs/alerting/alertmanager/
-##
 alertmanager:
 
   ## Deploy alertmanager
@@ -946,8 +918,6 @@ alertmanager:
   #     foo:$apr1$OFG3Xybp$ckL0FHDAkoXYIlH9.cysT0
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
-## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
-##
 grafana:
   enabled: false
   namespaceOverride: ""
@@ -1166,8 +1136,6 @@ grafana:
     #   replacement: $1
     #   action: replace
 
-## Flag to disable all the kubernetes component scrapers
-##
 kubernetesServiceMonitors:
   enabled: false
 
@@ -2194,20 +2162,7 @@ prometheus-node-exporter:
 ##
 prometheusOperator:
   enabled: true
-
-  ## Use '{{ template "kube-prometheus-stack.fullname" . }}-operator' by default
-  fullnameOverride: ""
-
-  ## Number of old replicasets to retain ##
-  ## The default value is 10, 0 will garbage-collect old replicasets ##
   revisionHistoryLimit: 10
-
-  ## Strategy of the deployment
-  ##
-  strategy: {}
-
-  ## Prometheus-Operator v0.39.0 and later support TLS natively.
-  ##
   tls:
     enabled: true
     # Value must match version names from https://golang.org/pkg/crypto/tls/#pkg-constants
@@ -2224,50 +2179,9 @@ prometheusOperator:
     ## The default timeoutSeconds is 10 and the maximum value is 30.
     timeoutSeconds: 10
     enabled: true
-    ## A PEM encoded CA bundle which will be used to validate the webhook's server certificate.
-    ## If unspecified, system trust roots on the apiserver are used.
-    caBundle: ""
-    ## If enabled, generate a self-signed certificate, then patch the webhook configurations with the generated data.
-    ## On chart upgrades (or if the secret exists) the cert will not be re-generated. You can use this to provide your own
-    ## certs ahead of time if you wish.
-    ##
-    annotations: {}
-    #   argocd.argoproj.io/hook: PreSync
-    #   argocd.argoproj.io/hook-delete-policy: HookSucceeded
-
-    namespaceSelector: {}
-    objectSelector: {}
-
-    mutatingWebhookConfiguration:
-      annotations: {}
-      #   argocd.argoproj.io/hook: PreSync
-
-    validatingWebhookConfiguration:
-      annotations: {}
-      #   argocd.argoproj.io/hook: PreSync
-
     deployment:
-      enabled: false
-
-      ## Number of replicas
-      ##
       replicas: 1
-
-      ## Strategy of the deployment
-      ##
-      strategy: {}
-
-      # Ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
-      podDisruptionBudget: {}
-        # maxUnavailable: 1
-        # minAvailable: 1
-
-      ## Number of old replicasets to retain ##
-      ## The default value is 10, 0 will garbage-collect old replicasets ##
       revisionHistoryLimit: 10
-
-      ## Prometheus-Operator v0.39.0 and later support TLS natively.
-      ##
       tls:
         enabled: true
         # Value must match version names from https://golang.org/pkg/crypto/tls/#pkg-constants
@@ -2286,74 +2200,16 @@ prometheusOperator:
       ## Configuration for Prometheus operator Webhook service
       ##
       service:
-        annotations: {}
-        labels: {}
         clusterIP: ""
         ipDualStack:
           enabled: false
           ipFamilies: ["IPv6", "IPv4"]
           ipFamilyPolicy: "PreferDualStack"
-
-        ## Port to expose on each node
-        ## Only used if service.type is 'NodePort'
-        ##
         nodePort: 31080
-
         nodePortTls: 31443
-
-        ## Additional ports to open for Prometheus operator Webhook service
-        ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#multi-port-services
-        ##
-        additionalPorts: []
-
-        ## Loadbalancer IP
-        ## Only use if service.type is "LoadBalancer"
-        ##
-        loadBalancerIP: ""
-        loadBalancerSourceRanges: []
-
-        ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
-        ##
         externalTrafficPolicy: Cluster
-
-        ## Service type
-        ## NodePort, ClusterIP, LoadBalancer
-        ##
         type: ClusterIP
 
-        ## List of IP addresses at which the Prometheus server service is available
-        ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-        ##
-        externalIPs: []
-
-      # ## Labels to add to the operator webhook deployment
-      # ##
-      labels: {}
-
-      ## Annotations to add to the operator webhook deployment
-      ##
-      annotations: {}
-
-      ## Labels to add to the operator webhook pod
-      ##
-      podLabels: {}
-
-      ## Annotations to add to the operator webhook pod
-      ##
-      podAnnotations: {}
-
-      ## Assign a PriorityClassName to pods if set
-      # priorityClassName: ""
-
-      ## Define Log Format
-      # Use logfmt (default) or json logging
-      # logFormat: logfmt
-
-      ## Decrease log verbosity to errors only
-      # logLevel: error
-
-      ## Prometheus-operator webhook image
-      ##
       image:
         registry: quay.io
         repository: prometheus-operator/admission-webhook
@@ -3564,7 +3420,7 @@ prometheus:
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the PrometheusRule resources created
     ##
-    ruleSelectorNilUsesHelmValues: true
+    ruleSelectorNilUsesHelmValues: false
 
     ## PrometheusRules to be selected for target discovery.
     ## If {}, select all PrometheusRules
@@ -3589,7 +3445,7 @@ prometheus:
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the servicemonitors created
     ##
-    serviceMonitorSelectorNilUsesHelmValues: true
+    serviceMonitorSelectorNilUsesHelmValues: false
 
     ## ServiceMonitors to be selected for target discovery.
     ## If {}, select all ServiceMonitors
@@ -3612,7 +3468,7 @@ prometheus:
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the podmonitors created
     ##
-    podMonitorSelectorNilUsesHelmValues: true
+    podMonitorSelectorNilUsesHelmValues: false
 
     ## PodMonitors to be selected for target discovery.
     ## If {}, select all PodMonitors
@@ -3634,7 +3490,7 @@ prometheus:
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the probes created
     ##
-    probeSelectorNilUsesHelmValues: true
+    probeSelectorNilUsesHelmValues: false
 
     ## Probes to be selected for target discovery.
     ## If {}, select all Probes
@@ -3656,7 +3512,7 @@ prometheus:
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the scrapeConfigs created
     ##
-    scrapeConfigSelectorNilUsesHelmValues: true
+    scrapeConfigSelectorNilUsesHelmValues: false
 
     ## scrapeConfigs to be selected for target discovery.
     ## If {}, select all scrapeConfigs
@@ -4466,7 +4322,7 @@ thanosRuler:
     ## prometheus resource to be created with selectors based on values in the helm deployment,
     ## which will also match the PrometheusRule resources created
     ##
-    ruleSelectorNilUsesHelmValues: true
+    ruleSelectorNilUsesHelmValues: false
 
     ## PrometheusRules to be selected for target discovery.
     ## If {}, select all PrometheusRules
@@ -4552,7 +4408,7 @@ thanosRuler:
 
     ## If true, http://{{ template "kube-prometheus-stack.thanosRuler.name" . }}.{{ template "kube-prometheus-stack.namespace" . }}:{{ .Values.thanosRuler.service.port }}
     ## will be used as value for externalPrefix
-    externalPrefixNilUsesHelmValues: true
+    externalPrefixNilUsesHelmValues: false
 
     ## The route prefix ThanosRuler registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true,
     ## but the server serves requests under a different route prefix. For example for use with kubectl proxy.
