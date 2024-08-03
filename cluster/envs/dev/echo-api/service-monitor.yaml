@@ -7,9 +7,6 @@ spec:
   endpoints:
   - path: /metrics
     port: app
-  namespaceSelector:
-    matchNames:
-    - metrics
   selector:
     matchLabels:
       app: echo-api
