@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: sentinel-prometheus
+  namespace: metrics
+spec:
+  endpoints:
+  - path: /metrics
+    port: app
+  namespaceSelector:
+    matchNames:
+    - metrics
+  selector:
+    matchLabels:
+      app: echo-api
