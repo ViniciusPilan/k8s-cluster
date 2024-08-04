@@ -24,23 +24,13 @@ fullnameOverride: "sentinel"
 
 ## Labels to apply to all resources
 ##
-commonLabels: {}
-# scmhash: abc123
-# myLabel: aakkmd
+commonLabels: 
+  stack: metrics
 
 ## Install Prometheus Operator CRDs
 ##
 crds:
   enabled: true
-
-## custom Rules to override "for" and "severity" in defaultRules
-##
-customRules: {}
-  # AlertmanagerFailedReload:
-  #   for: 3m
-  # AlertmanagerMembersInconsistent:
-  #   for: 5m
-  #   severity: "warning"
 
 ## Create default rules for monitoring the cluster
 ##
@@ -179,27 +169,7 @@ defaultRules:
   # KubeAPIDown: true
   # NodeRAIDDegraded: true
 
-## Deprecated way to provide custom recording or alerting rules to be deployed into the cluster.
-##
-# additionalPrometheusRules: []
-#  - name: my-rule-file
-#    groups:
-#      - name: my_group
-#        rules:
-#        - record: my_record
-#          expr: 100 * my_record
 
-## Provide custom recording or alerting rules to be deployed into the cluster.
-##
-additionalPrometheusRulesMap: {}
-#  rule-name:
-#    groups:
-#    - name: my_group
-#      rules:
-#      - record: my_record
-#        expr: 100 * my_record
-
-##
 global:
   rbac:
     create: true
@@ -919,7 +889,7 @@ alertmanager:
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
 grafana:
-  enabled: false
+  enabled: true
   namespaceOverride: ""
 
   ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
