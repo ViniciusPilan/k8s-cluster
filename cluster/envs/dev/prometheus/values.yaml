@@ -1107,12 +1107,12 @@ grafana:
     #   action: replace
 
 kubernetesServiceMonitors:
-  enabled: false
+  enabled: true
 
 ## Component scraping the kube api server
 ##
 kubeApiServer:
-  enabled: true
+  enabled: false
   tlsConfig:
     serverName: kubernetes
     insecureSkipVerify: false
@@ -1392,7 +1392,7 @@ kubelet:
 ## Component scraping the kube controller manager
 ##
 kubeControllerManager:
-  enabled: true
+  enabled: false
 
   ## If your kube controller manager is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1404,7 +1404,7 @@ kubeControllerManager:
   ## If using kubeControllerManager.endpoints only the port and targetPort are used
   ##
   service:
-    enabled: true
+    enabled: false
     ## If null or unset, the value is determined dynamically based on target Kubernetes version due to change
     ## of default port in Kubernetes 1.22.
     ##
@@ -1418,7 +1418,7 @@ kubeControllerManager:
     #   component: kube-controller-manager
 
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1495,9 +1495,9 @@ kubeControllerManager:
 ## Component scraping coreDns. Use either this or kubeDns
 ##
 coreDns:
-  enabled: true
+  enabled: false
   service:
-    enabled: true
+    enabled: false
     port: 9153
     targetPort: 9153
 
@@ -1508,7 +1508,7 @@ coreDns:
     # selector:
     #   k8s-app: kube-dns
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1667,7 +1667,7 @@ kubeDns:
 ## Component scraping etcd
 ##
 kubeEtcd:
-  enabled: true
+  enabled: false
 
   ## If your etcd is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1679,7 +1679,7 @@ kubeEtcd:
   ## Etcd service. If using kubeEtcd.endpoints only the port and targetPort are used
   ##
   service:
-    enabled: true
+    enabled: false
     port: 2381
     targetPort: 2381
     ipDualStack:
@@ -1701,7 +1701,7 @@ kubeEtcd:
   ##   keyFile: /etc/prometheus/secrets/etcd-client-cert/etcd-client-key
   ##
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1772,7 +1772,7 @@ kubeEtcd:
 ## Component scraping kube scheduler
 ##
 kubeScheduler:
-  enabled: true
+  enabled: false
 
   ## If your kube scheduler is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1784,7 +1784,7 @@ kubeScheduler:
   ## If using kubeScheduler.endpoints only the port and targetPort are used
   ##
   service:
-    enabled: true
+    enabled: false
     ## If null or unset, the value is determined dynamically based on target Kubernetes version due to change
     ## of default port in Kubernetes 1.23.
     ##
@@ -1798,7 +1798,7 @@ kubeScheduler:
     #   component: kube-scheduler
 
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1874,7 +1874,7 @@ kubeScheduler:
 ## Component scraping kube proxy
 ##
 kubeProxy:
-  enabled: true
+  enabled: false
 
   ## If your kube proxy is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1884,7 +1884,7 @@ kubeProxy:
   # - 10.141.4.24
 
   service:
-    enabled: true
+    enabled: false
     port: 10249
     targetPort: 10249
     ipDualStack:
@@ -1895,7 +1895,7 @@ kubeProxy:
     #   k8s-app: kube-proxy
 
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1973,7 +1973,7 @@ kube-state-metrics:
   releaseLabel: true
   prometheus:
     monitor:
-      enabled: true
+      enabled: false
 
       ## Scrape interval. If not set, the Prometheus default scrape interval is used.
       ##
