@@ -19,6 +19,13 @@ spec:
         name: echo-api
         ports:
         - containerPort: 8080
+        resources:
+          requests: 
+            cpu: 50m
+            memory: 160Mi
+          limits:
+            cpu: '0.5'
+            memory: 500Mi
 ---
 apiVersion: v1
 kind: Service
