@@ -1,4 +1,6 @@
 # https://realpython.com/command-line-interfaces-python-argparse/
+# Lead with exception
+# Lead with LOGs
 
 import argparse
 import time
@@ -7,26 +9,37 @@ import sys
 import requests
 
 
-INTERVAL_SECONDS_DEFAULT = 0.001
+def init_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("url", help="URL to make the overload.")
+    parser.add_argument("interval", help="Interval between requests (in seconds).")
+    parser.add_argument(
+        "--amount", 
+        help="Amount of the requests that will be made. Let empty to be an infinity loop.")
+    return parser.parse_args()    
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("path")
-parser.add_argument("-l", "--long", action="store_true")
-args = parser.parse_args()
+if __name__ == "__main__":
+    args = init_args()
 
+    i = 0
+    url = args.url
+    interval = float(args.interval)
+    amount = -1
 
-print(args.long)
-print(args.path)
+    if args.amount is not None:
+        amount = int(args.amount)
 
+    while True:
+        if i == amount:
+            break
+        
+        time.sleep(interval)
 
-# for i in range(10):
-#     if len(sys.argv) == 1:
-#         interval = INTERVAL_SECONDS_DEFAULT
-#     else:
-#         interval = float(sys.argv[1])
-    
-#     time.sleep(interval)
-#     response = requests.get("http://localhost:8082/echo")
+        try:
+            response = requests.get(url)
+            print(f"{i} {response.json()}")
+        except:
+            print(f"{i} Request failed")
 
-#     print(i, response.json())
+        i += 1
