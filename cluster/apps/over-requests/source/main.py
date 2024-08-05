@@ -27,6 +27,10 @@ if __name__ == "__main__":
     interval = float(args.interval)
     amount = -1
 
+    print(f"url: {url}")
+    print(f"interval: {interval}")
+    print(f"amount: {amount}")
+
     if args.amount is not None:
         amount = int(args.amount)
 

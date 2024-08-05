@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: over-requests
+  name: over-requests
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: over-requests
+  template:
+    metadata:
+      labels:
+        app: over-requests
+    spec:
+      containers:
+      - image: over-requests:dev
+        name: over-requests
+        resources:
+          requests: 
+            cpu: 50m
+            memory: 160Mi
+          limits:
+            cpu: '0.5'
+            memory: 500Mi
+        args: ["http://echo-api:8080/echo", "0.00001", "--amount=1000000000"]
