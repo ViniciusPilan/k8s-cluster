@@ -3,6 +3,7 @@
 # Lead with LOGs
 
 import argparse
+import logging
 import time
 import sys
 
@@ -14,36 +15,49 @@ def init_args():
     parser.add_argument("url", help="URL to make the overload.")
     parser.add_argument("interval", help="Interval between requests (in seconds).")
     parser.add_argument(
-        "--amount", 
-        help="Amount of the requests that will be made. Let empty to be an infinity loop.")
-    return parser.parse_args()    
+        "--time", 
+        help="Total time that the requests will be made. Let empty to be an infinity loop.")
+    parser.add_argument("--log", help="Log level.")
+    return parser.parse_args()
+
+
+def init_logger():
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s %(levelname)s %(message)s',
+        filename='log.log',
+        filemode='a'
+    )
 
 
 if __name__ == "__main__":
+    init_logger()
     args = init_args()
 
     i = 0
     url = args.url
     interval = float(args.interval)
-    amount = -1
+    total_amount = -1
 
-    print(f"url: {url}")
-    print(f"interval: {interval}")
-    print(f"amount: {amount}")
+    logging.info(f"url: {url}")
+    logging.info(f"interval: {interval}")
+    logging.info(f"time: {time}")
 
-    if args.amount is not None:
-        amount = int(args.amount)
+    if args.time is not None:
+        total_amount = float(args.time)/interval
+
+    logging.info(f"total_amount: {total_amount}")
 
     while True:
-        if i == amount:
+        if i == total_amount:
             break
         
         time.sleep(interval)
 
         try:
             response = requests.get(url)
-            print(f"{i} {response.json()}")
+            logging.debug(f"{i} {response.json()}")
         except:
-            print(f"{i} Request failed")
+            logging.error(f"{i} Request failed")
 
         i += 1
