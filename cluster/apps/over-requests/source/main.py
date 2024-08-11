@@ -21,9 +21,21 @@ def init_args():
     return parser.parse_args()
 
 
-def init_logger():
+def init_logger(log_level):
+    level = "INFO"
+
+    if log_level.upper() == "DEBUG":
+        level = logging.DEBUG
+
+    if log_level.upper() == "ERROR":
+        level = logging.ERROR
+
+    if log_level.upper() == "WARNING":
+        level = logging.WARNING
+
+
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=level,
         format='%(asctime)s %(levelname)s %(message)s',
         filename='log.log',
         filemode='a'
@@ -31,8 +43,9 @@ def init_logger():
 
 
 if __name__ == "__main__":
-    init_logger()
+    
     args = init_args()
+    init_logger(str(args.log))
 
     i = 0
     url = args.url
@@ -40,13 +53,14 @@ if __name__ == "__main__":
     total_amount = -1
 
     logging.info(f"url: {url}")
-    logging.info(f"interval: {interval}")
-    logging.info(f"time: {time}")
+    logging.info(f"interval: {interval} seconds")
+    logging.info(f"time: {args.time} seconds")
+    logging.info(f"log level: {str(args.log)}")
 
     if args.time is not None:
         total_amount = float(args.time)/interval
 
-    logging.info(f"total_amount: {total_amount}")
+    logging.info(f"total_amount: {total_amount} requests")
 
     while True:
         if i == total_amount:
