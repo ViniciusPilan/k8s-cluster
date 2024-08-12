@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kong-ingress-controller
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+    targetRevision: echo-api
+    ref: values
+  - repoURL: https://charts.konghq.com
+    chart: kong
+    targetRevision: 2.8.0
+    helm:
+      valueFiles:
+      - $values/cluster/envs/dev/kong/values.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: ingress
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
