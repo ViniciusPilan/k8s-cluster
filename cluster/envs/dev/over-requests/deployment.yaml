@@ -26,4 +26,4 @@ spec:
             cpu: '0.5'
             memory: 500Mi
         command: ["python"]
-        args: ["main.py", "http://echo-api:8080/echo", "1", "--time=10", "--log=DEBUG"]
+        args: ["main.py", "http://echo-api:8080/echo", "1", "--time=360", "--log=DEBUG"]
