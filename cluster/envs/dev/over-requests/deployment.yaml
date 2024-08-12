@@ -4,6 +4,7 @@ metadata:
   labels:
     app: over-requests
   name: over-requests
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -24,4 +25,5 @@ spec:
           limits:
             cpu: '0.5'
             memory: 500Mi
-        args: ["http://echo-api:8080/echo", "0.00001", "--amount=1000000000"]
+        command: ["python"]
+        args: ["main.py", "http://echo-api:8080/echo", "1", "--time=10", "--log=DEBUG"]

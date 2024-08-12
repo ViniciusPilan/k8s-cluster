@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: over-requests
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+    targetRevision: echo-api
+    path: cluster/envs/dev/over-requests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
