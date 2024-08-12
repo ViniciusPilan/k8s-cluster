@@ -43,7 +43,6 @@ def init_logger(log_level):
 
 
 if __name__ == "__main__":
-    
     args = init_args()
     init_logger(str(args.log))
 
