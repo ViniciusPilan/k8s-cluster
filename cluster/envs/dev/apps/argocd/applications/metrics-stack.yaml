@@ -9,12 +9,29 @@ spec:
   - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
     targetRevision: echo-api
     ref: values
+  ###################### Prometheus ######################
   - repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
     targetRevision: 61.7.0
     helm:
+      releaseName: prometheus
       valueFiles:
+      - $values/cluster/envs/dev/apps/prometheus/base.yaml
       - $values/cluster/envs/dev/apps/prometheus/values.yaml
+  ###################### Grafana ######################
+  - repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 61.7.0
+    helm:
+      releaseName: grafana
+      valueFiles:
+      - $values/cluster/envs/dev/apps/grafana/base.yaml
+      - $values/cluster/envs/dev/apps/grafana/values.yaml
+  - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+    targetRevision: echo-api
+    path: cluster/envs/dev/apps/grafana/assets
+    directory:
+      recursive: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: metrics
