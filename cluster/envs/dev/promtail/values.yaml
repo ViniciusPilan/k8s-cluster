@@ -2,7 +2,7 @@
 nameOverride: null
 
 # -- Overrides the chart's computed fullname
-fullnameOverride: null
+fullnameOverride: promtail
 
 global:
   # -- Allow parent charts to override registry hostname
