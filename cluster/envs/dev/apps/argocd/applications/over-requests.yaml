@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
     targetRevision: echo-api
-    path: cluster/envs/dev/over-requests
+    path: cluster/envs/dev/apps/over-requests
   destination:
     server: https://kubernetes.default.svc
     namespace: default

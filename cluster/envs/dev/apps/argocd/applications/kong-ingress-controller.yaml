@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metrics-stack
+  name: kong-ingress-controller
   namespace: argocd
 spec:
   project: default
@@ -9,15 +9,15 @@ spec:
   - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
     targetRevision: echo-api
     ref: values
-  - repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: 61.7.0
+  - repoURL: https://charts.konghq.com
+    chart: kong
+    targetRevision: 2.8.0
     helm:
       valueFiles:
-      - $values/cluster/envs/dev/prometheus/values.yaml
+      - $values/cluster/envs/dev/apps/kong/values.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: metrics
+    namespace: ingress
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

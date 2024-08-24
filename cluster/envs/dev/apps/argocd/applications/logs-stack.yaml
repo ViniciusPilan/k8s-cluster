@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: logs-stack
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: logs
+  sources:
+  - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+    targetRevision: echo-api
+    ref: values
+  - repoURL: https://grafana.github.io/helm-charts
+    chart: loki-distributed
+    targetRevision: 0.79.3
+    helm:
+      valueFiles:
+      - $values/cluster/envs/dev/apps/loki/values.yaml
+  - repoURL: https://grafana.github.io/helm-charts
+    chart: promtail
+    targetRevision: 6.16.4
+    helm:
+      valueFiles:
+      - $values/cluster/envs/dev/promtail/values.yaml
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
