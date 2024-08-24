@@ -1,0 +1,10 @@
+- AlertManager
+- Improve Loki
+- Alerts
+- Create Helm charts for the apps
+- Create CRUD with db
+- Cache
+- MongoDB + MongoExpress
+- Istio
+- TLS
+- Ingress
