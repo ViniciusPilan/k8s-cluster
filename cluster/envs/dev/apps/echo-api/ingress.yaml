@@ -1,16 +1,16 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: echo-api
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /echo
-        pathType: Prefix
-        backend:
-          service:
-            name: echo-api
-            port:
-              number: 8080
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: echo-api
+# spec:
+#   ingressClassName: kong
+#   rules:
+#   - http:
+#       paths:
+#       - path: /echo
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: echo-api
+#             port:
+#               number: 8080
