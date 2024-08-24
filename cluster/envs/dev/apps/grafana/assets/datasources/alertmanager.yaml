@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   labels:
     grafana_datasource: "1"
-  name: prometheus-grafana-datasource
+  name: grafana-alertmanager-datasource
   namespace: metrics
 data:
   datasource.yaml: |-

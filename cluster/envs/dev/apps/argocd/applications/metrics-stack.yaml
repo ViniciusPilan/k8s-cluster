@@ -31,7 +31,7 @@ spec:
     targetRevision: echo-api
     path: cluster/envs/dev/apps/grafana/assets
     directory:
-      recursive: true
+      recurse: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: metrics
