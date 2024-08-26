@@ -2785,7 +2785,7 @@ minio:
 # Can only be enabled when 'enterprise.enabled' is false.
 nginx:
   # -- Specifies whether nginx should be enabled
-  enabled: true
+  enabled: false
   # -- Number of replicas for nginx
   replicas: 1
   # -- Enable logging of 2xx and 3xx HTTP requests
@@ -3836,7 +3836,7 @@ grafana-agent-operator:
 enterprise:
   # Enable enterprise features. License must be provided, nginx gateway is not installed, instead
   # the enterprise gateway is used.
-  enabled: false
+  enabled: true
 
   # Whether to generate pre-2.0 Grafana Enterprise Metrics resource labels and selectors, or generate new Kubernetes standard selectors.
   # Rolling upgrade from version 1.7.x without downtime requires this setting to be true. Fresh installation or upgrade with downtime can set
