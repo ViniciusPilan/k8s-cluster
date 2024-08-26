@@ -443,6 +443,7 @@ mimir:
           endpoint: "minio.mimir.svc:9000"
           access_key_id: "mimir" # This is a secret injected via an environment variable
           secret_access_key: "12345678" # This is a secret injected via an environment variable
+          insecure: true
           http:
             insecure_skip_verify: true
 
