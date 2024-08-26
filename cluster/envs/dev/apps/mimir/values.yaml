@@ -2748,7 +2748,7 @@ rollout_operator:
     allowPrivilegeEscalation: false
 
 minio:
-  enabled: false
+  enabled: true
 
 nginx:
   enabled: false
