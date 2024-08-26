@@ -528,7 +528,7 @@ kedaAutoscaling:
   pollingInterval: 10
 
 alertmanager:
-  enabled: true
+  enabled: false
   # -- Total number of replicas for the alertmanager across all availability zones
   # If alertmanager.zoneAwareReplication.enabled=false, this number is taken as is.
   # Otherwise each zone starts `ceil(replicas / number_of_zones)` number of pods.
@@ -1195,7 +1195,7 @@ overrides_exporter:
   jaegerReporterMaxQueueSize: null
 
 ruler:
-  enabled: true
+  enabled: false
   replicas: 1
 
   # -- [Experimental] Configure autoscaling via KEDA (https://keda.sh). This requires having
