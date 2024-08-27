@@ -3352,8 +3352,8 @@ prometheus:
 
     ## The remote_write spec configuration for Prometheus.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#remotewritespec
-    remoteWrite: []
-    # - url: http://remote1/push
+    remoteWrite:
+    - url: http://mimir-gateway.mimir.svc:80/push
     ## additionalRemoteWrite is appended to remoteWrite
     additionalRemoteWrite: []
 
