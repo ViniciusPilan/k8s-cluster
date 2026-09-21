@@ -1,0 +1,20 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-istio-label-namespaces
+spec:
+  validationFailureAction: Audit # Enforce # Use 'Audit' if you want to warn instead of block
+  background: true
+  rules:
+  - name: check-istio-label
+    match:
+      any:
+      - resources:
+          kinds:
+          - Namespace
+    validate:
+      message: "The label 'istio-injection=enabled' is required for all namespaces."
+      pattern:
+        metadata:
+          labels:
+            istio-injection: "enabled" # Matches any non-empty string
