@@ -13,10 +13,7 @@ function createBase() {
 function installArgo() {
     echo "INFO: Installing ArgoCD"
     helm repo add argo https://argoproj.github.io/argo-helm
-    helm install argocd argo/argo-cd --values=../argo/values.yaml --namespace=argocd --create-namespace=true
-
-    echo "INFO: Waiting ArgoCD be ready to proceed"
-    kubectl wait --for=condition=Ready pod --all -n argocd --timeout=5m
+    helm install argocd argo/argo-cd --values=../tools/argo/values.yaml --namespace=argocd --create-namespace=true
 }
 
 
