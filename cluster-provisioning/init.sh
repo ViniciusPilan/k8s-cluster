@@ -21,6 +21,11 @@ function installArgo() {
 
     echo "step 03: create argo applications to manage all repository applications"
     kubectl apply -f ../tools/argo/argo-applications.yaml
+
+    echo "step 04: access ArgoCD"
+    echo " - login: admin"
+    echo " - password: $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)"
+    echo " Execute 'kubectl port-forward service/argocd-server 8080:80 -n argocd' in terminal to create port mapping to access argocd web ui"
 }
 
 
