@@ -21,7 +21,7 @@ spec:
 
 
     - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
-      targetRevision: main
+      targetRevision: refactor-v1
       ref: values
 
   # syncPolicy:

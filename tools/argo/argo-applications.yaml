@@ -12,7 +12,7 @@ spec:
 
   sources:
     - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
-      targetRevision: main
+      targetRevision: refactor-v1
       path: tools/argo/applications
 
   syncPolicy:
