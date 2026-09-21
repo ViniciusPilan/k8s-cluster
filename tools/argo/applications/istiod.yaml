@@ -27,7 +27,7 @@ spec:
       helm:
         releaseName: istio-ingress
         valueFiles:
-          - $values/tools/istio/istiod/values.yaml
+          - $values/tools/istio/gateway/values.yaml
 
     - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
       targetRevision: refactor-v1
