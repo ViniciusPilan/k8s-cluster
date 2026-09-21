@@ -12,6 +12,7 @@
 - Core apps working and allowing the cluster be "useful"
     - Ingress
     - Service Mesh (istio)
+    - Certmanager
     - Prometheus (or alloy)
     - Grafana
     - Loki
