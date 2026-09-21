@@ -36,7 +36,7 @@ containerSecurityContext: {}
 
 service:
   # Type of service. Set to "None" to disable the service entirely
-  type: LoadBalancer
+  type: NodePort
   # Set to a specific ClusterIP, or "" for automatic assignment
   clusterIP: ""
   # Additional labels to add to the service selector
@@ -50,6 +50,7 @@ service:
     port: 80
     protocol: TCP
     targetPort: 80
+    nodePort: 30080
   - name: https
     port: 443
     protocol: TCP
