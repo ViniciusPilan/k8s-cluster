@@ -1,20 +1,44 @@
-apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+apiVersion: policies.kyverno.io/v1
+kind: MutatingPolicy
 metadata:
-  name: require-istio-label-namespaces
+  name: enforce-istio-injection-via-namespace
 spec:
-  validationFailureAction: Audit # Enforce # Use 'Audit' if you want to warn instead of block
-  background: true
-  rules:
-  - name: check-istio-label
-    match:
-      any:
-      - resources:
-          kinds:
-          - Namespace
-    validate:
-      message: "The label 'istio-injection=enabled' is required for all namespaces."
-      pattern:
-        metadata:
-          labels:
-            istio-injection: "enabled" # Matches any non-empty string
+  evaluation:
+    admission:
+      enabled: true
+    mutateExisting:
+      enabled: true
+
+  matchConstraints:
+    resourceRules:
+      - apiGroups:
+          - ""
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+          - UPDATE
+        resources:
+          - namespaces
+
+  matchConditions:
+    - name: exclude-system-namespaces
+      expression: |
+        ![
+          "kube-system",
+          "kube-public",
+          "kube-node-lease",
+          "kyverno"
+        ].exists(n, n == object.metadata.name)
+
+  mutations:
+    - patchType: ApplyConfiguration
+      applyConfiguration:
+        expression: |
+          Object{
+            metadata: Object.metadata{
+              labels: Object.metadata.labels{
+                "istio-injection": "enabled"
+              }
+            }
+          }
