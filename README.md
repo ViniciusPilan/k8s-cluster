@@ -22,3 +22,7 @@
 
 
 [] LLM
+
+
+
+Argocd -> Istio -> Kyverno
