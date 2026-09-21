@@ -6,6 +6,7 @@
     - workloads ready to be created
     - scripts done
     - security
+    - ArgoCD
 
 [] apps core
 - Core apps working and allowing the cluster be "useful"
