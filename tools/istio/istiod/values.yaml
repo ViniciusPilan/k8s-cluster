@@ -27,6 +27,11 @@ nodeSelector: {}
 
 topologySpreadConstraints: []
 
+# Whether to use an existing CNI installation
+cni:
+  enabled: true
+  provider: default
+
 ## Mesh config settings
 
 # Install the mesh config map, generated from values.yaml.
