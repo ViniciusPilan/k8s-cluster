@@ -12,7 +12,7 @@ nodes:
       tier: base
     extraPortMappings:
       - containerPort: 30080
-        hostPort: 8080
+        hostPort: 8000
         protocol: TCP
 
   - role: worker
