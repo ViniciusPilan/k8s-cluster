@@ -37,7 +37,7 @@ spec:
         expression: |
           Object{
             metadata: Object.metadata{
-              labels: Object.metadata.labels{
+              labels: {
                 "istio-injection": "enabled"
               }
             }
