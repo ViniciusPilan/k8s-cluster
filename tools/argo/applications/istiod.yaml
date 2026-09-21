@@ -11,6 +11,7 @@ spec:
     namespace: istio-system
 
   sources:
+    # Istiod
     - repoURL: https://istio-release.storage.googleapis.com/charts
       chart: istiod
       targetRevision: 1.30.1
@@ -19,6 +20,14 @@ spec:
         valueFiles:
           - $values/tools/istio/istiod/values.yaml
 
+    # Istio gateway
+    - repoURL: https://istio-release.storage.googleapis.com/charts
+      chart: gateway
+      targetRevision: 1.30.1
+      helm:
+        releaseName: istio-ingress
+        valueFiles:
+          - $values/tools/istio/istiod/values.yaml
 
     - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
       targetRevision: refactor-v1
