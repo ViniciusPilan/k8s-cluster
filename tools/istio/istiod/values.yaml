@@ -186,3 +186,6 @@ global:
 
     # Tolerations for the waypoint proxy.
     tolerations: []
+
+base:
+  validationFailurePolicy: Fail
