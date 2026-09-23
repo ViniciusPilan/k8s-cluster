@@ -5,24 +5,22 @@
     - nodes running
     - workloads ready to be created
     - scripts done
-    - security
+    - Security Patterns
+    - Kyverno
     - ArgoCD
+    - Istio (base, cni, istiod, ingress)
+    - Ingress
 
 [] apps core
 - Core apps working and allowing the cluster be "useful"
-    - Ingress
-    - Service Mesh (istio)
-    - Certmanager
     - Prometheus (or alloy)
     - Grafana
     - Loki
-
-[] Custom apps
-    
+    - Falco
 
 
 [] LLM
 
 
 
-Argocd -> Istio -> Kyverno
+Argocd -> Istio -> Kyverno -> PSA -> Ingress -> Istio gateway -> Prometheus -> Grafana -> Loki
