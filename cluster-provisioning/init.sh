@@ -29,8 +29,23 @@ function installArgo() {
 }
 
 
+function installKyverno() {
+    echo "INFO: Installing Kyverno"
+
+    echo "step 01: add repository to help repo list"
+    helm repo add kyverno https://kyverno.github.io/kyverno/
+    helm repo update
+
+    echo "step 02: install Helm release and wait all be ready to proceed"
+    helm install kyverno kyverno/kyverno -n kyverno --create-namespace=true --wait --values=../tools/kyverno/values.yaml
+
+    echo "step 03: apply policies"
+    kubectl apply -f ../tools/kyverno/policies
+}
+
 function main() {
     createBase
+    installKyverno
     installArgo
 }
 
