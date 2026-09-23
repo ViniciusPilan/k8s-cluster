@@ -7,9 +7,9 @@ spec:
   project: default
 
   source:
-    repoURL: ghcr.io/nicklasfrahm/charts/gateway-api
-    targetRevision: 0.2.0
+    repoURL: ghcr.io/nicklasfrahm/charts
     chart: gateway-api
+    targetRevision: 0.2.0
 
   destination:
     server: https://kubernetes.default.svc
