@@ -43,8 +43,15 @@ function installKyverno() {
     kubectl apply -f ../tools/kyverno/policies
 }
 
+
+function installGatewayCrds() {
+    echo "INFO: Installing Gateway CRDs"
+    kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.1/standard-install.yaml
+}
+
 function main() {
     createBase
+    installGatewayCrds
     installKyverno
     installArgo
 }
