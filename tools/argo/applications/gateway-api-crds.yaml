@@ -10,6 +10,19 @@ spec:
     repoURL: ghcr.io/nicklasfrahm/charts
     chart: gateway-api
     targetRevision: 0.2.0
+    helm:
+      values: |
+        gatewayCRDInstaller:
+          enabled: true
+          version: "1.2.0"
+          channel: "standard" 
+          image:
+            repository: "alpine/kubectl"
+            tag: "1.33.3"
+          resources:
+            - gateway.networking.k8s.io_gatewayclasses
+            - gateway.networking.k8s.io_gateways
+            - gateway.networking.k8s.io_httproutes
 
   destination:
     server: https://kubernetes.default.svc
