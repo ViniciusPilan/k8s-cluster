@@ -10,9 +10,12 @@ spec:
     repoURL: https://kubernetes-sigs.github.io/metrics-server/
     chart: metrics-server
     targetRevision: 3.14.0
-
     helm:
       releaseName: metrics-server
+      values: |
+        args:
+          # This is necessary in this kind cluster. 
+          - --kubelet-insecure-tls
 
   destination:
     server: https://kubernetes.default.svc
