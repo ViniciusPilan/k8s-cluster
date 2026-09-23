@@ -10,6 +10,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: istio-system
 
+
+
   sources:
     # Istio base
     - repoURL: https://istio-release.storage.googleapis.com/charts
