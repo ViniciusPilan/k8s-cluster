@@ -18,47 +18,45 @@
 # $ cd cluster-provisioning
 # $ bash init.sh
 
+function checkInstalledBinary() {
+    local cmd=$1
 
-function checkRequirements {
-    echo "INFO: Checking the requirements"
+    echo "Binary $cmd is installed?"
 
-    echo "Step 1: Docker is running?"
-    if ! command -v docker &> /dev/null; then
-        echo "ERROR: Docker is not installed."
+    if ! command -v $cmd &> /dev/null; then
+        echo "ERROR: $cmd is not installed."
         exit 1
     fi
+
+    echo "OK: $cmd is installed and running."
+}
+
+
+function checkDockerIsRunning() {
+    echo "Docker is running?"
+
     if ! docker info &> /dev/null; then
         echo "ERROR: Docker is installed but is not running."
         exit 1
     fi
-    echo "OK: Docker is installed and running."
+}
 
-    echo "Step 2: Kind is installed?"
-    if ! command -v kind &> /dev/null; then
-        echo "ERROR: Kind is not installed."
-        exit 1
-    fi
-    echo "OK: Kind is installed."
 
-    echo "Step 3: Kubectl is installed?"
-    if ! command -v kubectl &> /dev/null; then
-        echo "ERROR: Kubectl is not installed."
-        exit 1
-    fi
-    echo "OK: Kubectl is installed."
+function checkRequirements() {
+    echo "INFO: Checking the requirements"
 
-    echo "Step 4: Helm is installed?"
-    if ! command -v helm &> /dev/null; then
-        echo "ERROR: Helm is not installed."
-        exit 1
-    fi
-    echo "OK: Helm is installed."
+    checkInstalledBinary "docker"
+    checkInstalledBinary "kind"
+    checkInstalledBinary "kubectl"
+    checkInstalledBinary "helm"
+
+    checkDockerIsRunning
 
     echo "INFO: All requirements are satisfied."
 }
 
 
-function createBase() {
+function createClusterBase() {
     echo "INFO: Starting the cluster creation process" 
     kind create cluster --config=config.yaml --name=k8s-cluster
  
@@ -125,7 +123,7 @@ function createIntermediateCASecret() {
 
 function main() {
     checkRequirements
-    createBase
+    createClusterBase
     installKyverno
     installGatewayCRDs
     installCertManager
