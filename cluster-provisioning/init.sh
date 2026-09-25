@@ -114,7 +114,7 @@ function installCertManager() {
     helm repo add jetstack https://charts.jetstack.io
     
     echo "Step 02: install Helm release and wait all be ready to proceed"
-    helm install cert-manager jetstack/cert-manager --version v1.21.2 --wait --create-namespace=true -n cert-manager
+    helm install cert-manager jetstack/cert-manager --version v1.21.2 --wait --create-namespace=true -n cert-manager --values=../tools/certmanager/values.yaml
 }
 
 
@@ -126,10 +126,10 @@ function createIntermediateCASecret() {
 function main() {
     checkRequirements
     createBase
+    installKyverno
     installGatewayCRDs
     installCertManager
     createIntermediateCASecret
-    installKyverno
     installArgo
 }
 
