@@ -1,5 +1,33 @@
 #!/bin/bash 
 
+# This script will create the cluster with the project patterns and base tools:
+# - All Kubernetes components to run applications
+# - Kubernetes Gateway API Custom Resource Definitions (to allow setting of ingress traffic management with GatewayAPI)
+# - Argocd (to deploy applications)
+# - Kyverno (to ensure project patterns)
+
+
+# Requirements:
+# - Docker daemon
+# - Kind
+# - kubectl
+# - Helm
+
+
+# How to run:
+# $ cd cluster-provisioning
+# $ bash init.sh
+
+
+function checkRequirements {
+    # TODO -> create the checks and break all the script execution if one of the checks was failed.
+    echo "INFO: Checking the requirements"
+    echo "Step 1: Docker is running?"
+    echo "Step 2: Kind is installed?"
+    echo "Step 3: Kubectl is installed?"
+    echo "Step 4: Helm is installed?"
+}
+
 
 function createBase() {
     echo "INFO: Starting the cluster creation process" 
@@ -44,14 +72,16 @@ function installKyverno() {
 }
 
 
-function installGatewayCrds() {
+function installGatewayCRDs() {
     echo "INFO: Installing Gateway API CRDs"
     kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.1/standard-install.yaml
 }
 
+
 function main() {
+    checkRequirements
     createBase
-    installGatewayCrds
+    installGatewayCRDs
     installKyverno
     installArgo
 }
