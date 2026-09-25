@@ -30,7 +30,8 @@ spec:
           "kube-node-lease",
           "kyverno",
           "istio-system",
-          "cert-manager"
+          "cert-manager",
+          "argocd"
         ].exists(n, n == object.metadata.name)
 
   mutations:
