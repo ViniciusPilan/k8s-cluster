@@ -8,7 +8,7 @@
 
 
 # Requirements:
-# - Docker daemon
+# - Docker installed and daemon running
 # - Kind
 # - kubectl
 # - Helm
