@@ -23,6 +23,10 @@
     - Node exporter
 
 
+
+Kyverno -> resource request/limit
+policy reporter
+
 [] LLM
 
 
