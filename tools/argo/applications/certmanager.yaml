@@ -22,6 +22,11 @@ spec:
   - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
     targetRevision: refactor-v1
     ref: values
+    path: tools/certmanager/manifests
+
+  - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
+    targetRevision: refactor-v1
+    path: tools/certmanager/manifests
 
   syncPolicy:
     automated:
