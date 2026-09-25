@@ -11,7 +11,7 @@
     - [x] Istio (base, cni, istiod, ingress)
     - [ ] Gateway API
     - [x] Metrics server
-    - [ ] CertManager
+    - [x] CertManager
 
 [] apps core
 - Core apps working and allowing the cluster be "useful"
@@ -19,20 +19,22 @@
     - Grafana
     - Loki
     - Falco
+    - Kube state metrics
+    - Node exporter
 
 
 [] LLM
 
 
 
-Argocd -> Istio -> Kyverno -> PSA -> Ingress -> Istio gateway -> Prometheus -> Grafana -> Loki -> AlertManager -> ferramenta pra ver as notificações
+Argocd -> Istio -> Kyverno -> PSA -> Ingress -> Istio gateway -> certmanager -> Prometheus -> Grafana -> Loki -> AlertManager -> ferramenta pra ver as notificações
 
 
-CA do homelab e certmanager criando os certs auto renovaveis
+[] CA do homelab e certmanager criando os certs auto renovaveis
 
 
 LLM
-NextCloud
-Documentos
+[Fotos](https://immich.app/)
+[Documentos](https://opencloud.eu/en)
 
 
