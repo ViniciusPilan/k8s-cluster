@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: istiod
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
 
@@ -23,3 +25,8 @@ spec:
     - repoURL: https://github.com/ViniciusPilan/k8s-cluster.git
       targetRevision: refactor-v1
       ref: values
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
