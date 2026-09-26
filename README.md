@@ -1,44 +1,38 @@
 ## Steps
 
-[] base
-- Cluster running
-    - [x] nodes running 
-    - [x] workloads ready to be created
-    - [x] scripts done
-    - [x] Security Patterns - PSA + Istio 
-    - [x] Kyverno
-    - [x] ArgoCD
-    - [x] Istio (base, cni, istiod, ingress)
-    - [ ] Gateway API
-    - [x] Metrics server
-    - [x] CertManager
+[ ] Base
+- [x] nodes running 
+- [x] workloads ready to be created
+- [x] scripts done
+- [x] Security Patterns - PSA + Istio 
+- [x] Kyverno
+- [x] ArgoCD
+- [x] Istio (base, cni, istiod, ingress)
+- [x] Metrics server
+- [x] CertManager
+- [x] Homelab CA
+- [ ] Gateway API
 
-[] apps core
-- Core apps working and allowing the cluster be "useful"
-    - Prometheus (or alloy)
-    - Grafana
-    - Loki
-    - Falco
-    - Kube state metrics
-    - Node exporter
+[ ] Networking
+- [ ] CNI with support to network policies
+- [ ] Network Policy
 
+[ ] Observability
+- [ ] LGTM - Loki, Grafana, Tempo, Mimir
+- [ ] Kube state metrics and Node exporter
 
+[ ] General Security
+- [ ] Falco
+- [ ] Pod Security Admission
+- [ ] MTLs
+- [ ] Audit 
 
+[ ] Apps
+- [ ] LLM
+- [ ] Flash Cards
+- [ ] [Fotos](https://immich.app/)
+- [ ] [Documentos](https://opencloud.eu/en)
+
+To reminde:
 Kyverno -> resource request/limit
 policy reporter
-
-[] LLM
-
-
-
-Argocd -> Istio -> Kyverno -> PSA -> Ingress -> Istio gateway -> certmanager -> Prometheus -> Grafana -> Loki -> AlertManager -> ferramenta pra ver as notificações
-
-
-[] CA do homelab e certmanager criando os certs auto renovaveis
-
-
-LLM
-[Fotos](https://immich.app/)
-[Documentos](https://opencloud.eu/en)
-
-
