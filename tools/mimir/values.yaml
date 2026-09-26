@@ -1,0 +1,70 @@
+# Small single-process Mimir deployment for the kind homelab cluster.
+# The chart name remains mimir-distributed, but deploymentMode selects Mimir's
+# monolithic target (all components in one pod).
+deploymentMode: monolithic
+fullnameOverride: mimir
+
+minio:
+  enabled: false
+
+kafka:
+  enabled: false
+
+rollout_operator:
+  enabled: false
+
+gateway:
+  enabled: false
+
+monolithic:
+  replicas: 1
+  zoneAwareReplication:
+    enabled: false
+  persistentVolume:
+    enabled: true
+    size: 10Gi
+    # No storageClass is specified so Kubernetes uses the cluster default.
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      memory: 2Gi
+
+mimir:
+  structuredConfig:
+    # This is a private in-cluster endpoint. Disabling tenant auth avoids
+    # requiring Alloy to add X-Scope-OrgID for a single-cluster setup.
+    multitenancy_enabled: false
+
+    # Use the classic ingester path instead of deploying the chart's demo Kafka.
+    ingest_storage:
+      enabled: false
+
+    blocks_storage:
+      backend: filesystem
+      filesystem:
+        dir: /data/blocks
+      bucket_store:
+        sync_dir: /data/tsdb-sync
+      tsdb:
+        dir: /data/tsdb
+
+    compactor:
+      data_dir: /data/compactor
+
+    limits:
+      compactor_blocks_retention_period: 14d
+
+    ruler_storage:
+      backend: filesystem
+      filesystem:
+        dir: /data/rules
+
+    alertmanager_storage:
+      backend: filesystem
+      filesystem:
+        dir: /data/alertmanager
+
+# Alloy can remote_write to:
+# http://mimir-monolithic.mimir.svc.cluster.local:8080/api/v1/push
