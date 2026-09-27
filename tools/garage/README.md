@@ -7,9 +7,10 @@ metadata claims use the `standard` local-path StorageClass; the data claim is
 match the node's available disk.
 
 The Helm chart creates the Garage admin token and RPC secret. The generated
-Secret is retained by the chart. Create S3 keys and buckets through Garage's
-admin CLI after the application is healthy; keep resulting S3 credentials out
-of this Git repository.
+Secret is retained by the chart. The chart's configuration job creates the
+`general` and `mimir-metrics` buckets. Create S3 keys through Garage's admin
+UI or CLI and grant each key access only to the bucket it needs; keep resulting
+S3 credentials out of this Git repository.
 
 For temporary access from a workstation, forward the S3 service port:
 

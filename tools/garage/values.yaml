@@ -23,6 +23,9 @@ clusterConfig:
   layout:
     enabled: true
     zone: dc1
+  buckets:
+    - name: general
+    - name: mimir-metrics
   podAnnotations:
     # Garage's peer RPC traffic must remain outside the Istio mesh.
     sidecar.istio.io/inject: "false"
