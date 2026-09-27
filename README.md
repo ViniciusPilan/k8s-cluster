@@ -30,9 +30,21 @@
 [ ] Apps
 - [ ] LLM
 - [ ] Flash Cards
+- [ ] App for checklist
+- [ ] App for kanban
 - [ ] [Fotos](https://immich.app/)
 - [ ] [Documentos](https://opencloud.eu/en)
 
 To reminde:
 Kyverno -> resource request/limit
 policy reporter
+
+[12:19, 26/09/2026] Vinícius Pilan: Resiliência da app com relação a spot
+[12:48, 26/09/2026] Vinícius Pilan: OCM para ativo ativo
+[12:56, 26/09/2026] Vinícius Pilan: Homelab - tf module general + dev “deployment”
+[13:03, 26/09/2026] Vinícius Pilan: Homelab HeadLamp pra facilitar
+[15:10, 26/09/2026] Vinícius Pilan: Corada Kubernetes Operator (firewall)
+[15:31, 26/09/2026] Vinícius Pilan: Cluster API
+[15:53, 26/09/2026] Vinícius Pilan: Homelab SA Security praticdd
+[16:01, 26/09/2026] Vinícius Pilan: Deny by default
+[16:13, 26/09/2026] Vinícius Pilan: Security patterns in cluster - network policy
