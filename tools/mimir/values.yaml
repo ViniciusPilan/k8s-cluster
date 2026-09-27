@@ -20,3 +20,9 @@ mimir:
           secret_access_key: "${AWS_SECRET_ACCESS_KEY}" # This is a secret injected via an environment variable
           http:
             insecure_skip_verify: true
+
+ruler:
+  enabled: false
+
+alertmanager:
+  enabled: false
