@@ -18,6 +18,7 @@ mimir:
           endpoint: "${BUCKET_HOST}:${BUCKET_PORT}"
           access_key_id: "${AWS_ACCESS_KEY_ID}" # This is a secret injected via an environment variable
           secret_access_key: "${AWS_SECRET_ACCESS_KEY}" # This is a secret injected via an environment variable
+          insecure: true
           http:
             insecure_skip_verify: true
 
