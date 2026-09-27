@@ -8,82 +8,17 @@ controller:
 alloy:
   configMap:
     content: |
-      // Discover pods cluster-wide; only pods opted in with the scrape
-      // annotations below are scraped.
       discovery.kubernetes "pods" {
         role = "pod"
       }
 
-      discovery.relabel "otel_pods" {
-        targets = discovery.kubernetes.pods.targets
-
-        // Opt in pods that expose OTel SDK metrics in Prometheus format.
-        rule {
-          // Keep only pods explicitly marked for scraping.
-          source_labels = ["__meta_kubernetes_pod_annotation_prometheus_io_scrape"]
-          action        = "keep"
-          regex         = "true"
-        }
-
-        // Require an explicit metrics port and retain only the matching
-        // discovered target for each pod.
-        rule {
-          // Ignore pods without a valid prometheus.io/port annotation.
-          source_labels = ["__meta_kubernetes_pod_annotation_prometheus_io_port"]
-          action        = "keep"
-          regex         = "[0-9]+"
-        }
-        rule {
-          // Keep only the discovered container port that matches the annotation.
-          source_labels = ["__meta_kubernetes_pod_annotation_prometheus_io_port"]
-          action        = "keepequal"
-          target_label  = "__meta_kubernetes_pod_container_port_number"
-        }
-        rule {
-          // Set the scrape target address to the pod IP and annotated port.
-          source_labels = ["__address__", "__meta_kubernetes_pod_annotation_prometheus_io_port"]
-          action        = "replace"
-          regex         = "([^:]+)(?::[0-9]+)?;([0-9]+)"
-          replacement   = "$1:$2"
-          target_label  = "__address__"
-        }
-
-        // Prometheus annotations use /metrics by convention; allow an
-        // optional custom path.
-        rule {
-          // Override the default scrape path when prometheus.io/path is set.
-          source_labels = ["__meta_kubernetes_pod_annotation_prometheus_io_path"]
-          action        = "replace"
-          regex         = "(.+)"
-          replacement   = "$1"
-          target_label  = "__metrics_path__"
-        }
-
-        rule {
-          // Add the pod's Kubernetes namespace to each scraped sample.
-          source_labels = ["__meta_kubernetes_namespace"]
-          target_label  = "namespace"
-        }
-        rule {
-          // Add the pod name to each scraped sample.
-          source_labels = ["__meta_kubernetes_pod_name"]
-          target_label  = "pod"
-        }
-        rule {
-          // Add the container name to each scraped sample.
-          source_labels = ["__meta_kubernetes_pod_container_name"]
-          target_label  = "container"
-        }
-      }
-
-      prometheus.scrape "otel_pods" {
-        targets         = discovery.relabel.otel_pods.output
+      prometheus.scrape "scrape_metrics" {
+        targets         = discovery.kubernetes.pods.targets
+        forward_to      = [prometheus.remote_write.metrics_service.receiver]
         scrape_interval = "30s"
-        metrics_path    = "/metrics"
-        forward_to      = [prometheus.remote_write.mimir.receiver]
       }
 
-      prometheus.remote_write "mimir" {
+      prometheus.remote_write "metrics_service" {
         endpoint {
           url = "http://mimir-gateway.mimir.svc.cluster.local/api/v1/push"
           headers = {
