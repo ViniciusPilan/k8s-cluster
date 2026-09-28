@@ -26,3 +26,14 @@ alloy:
           }
         }
       }
+
+extraObjects:
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    name: alloy-sa-token
+    labels:
+      app.kubernetes.io/component: alloy
+    annotations:
+      kubernetes.io/service-account.name: alloy
+  type: kubernetes.io/service-account-token

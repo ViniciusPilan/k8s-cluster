@@ -28,6 +28,8 @@ When no local values are needed, still create `values.yaml`. It must contain onl
 # This values.yaml is intentionally empty to keep the repository pattern.
 ```
 
+In the comment defined above, in `<version-specific URL>` replace with the default file version in the repository, not the raw version.
+
 Do not add `{}`, placeholder keys, or other content to that intentionally empty file.
 
 ## Completion

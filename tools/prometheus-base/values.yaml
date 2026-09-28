@@ -27,21 +27,63 @@ prometheus-node-exporter:
 # Keep the core component Services and ServiceMonitors for Alloy discovery.
 kubeApiServer:
   enabled: true
+  serviceMonitor:
+    authorization:
+      type: Bearer
+      credentials:
+        name: 'alloy-sa-token'
+        key: token
 
 kubeControllerManager:
   enabled: true
+  serviceMonitor:
+    authorization:
+      type: Bearer
+      credentials:
+        name: 'alloy-sa-token'
+        key: token
 
 kubeScheduler:
   enabled: true
+  serviceMonitor:
+    authorization:
+      type: Bearer
+      credentials:
+        name: 'alloy-sa-token'
+        key: token
 
 kubeEtcd:
   enabled: true
+  serviceMonitor:
+    authorization:
+      type: Bearer
+      credentials:
+        name: 'alloy-sa-token'
+        key: token
 
 kubelet:
   enabled: true
+  serviceMonitor:
+    authorization:
+      type: Bearer
+      credentials:
+        name: 'alloy-sa-token'
+        key: token
 
 kubeProxy:
   enabled: true
+  serviceMonitor:
+    authorization:
+      type: Bearer
+      credentials:
+        name: 'alloy-sa-token'
+        key: token
 
 coreDns:
   enabled: true
+  serviceMonitor:
+    authorization:
+      type: Bearer
+      credentials:
+        name: 'alloy-sa-token'
+        key: token
