@@ -87,3 +87,5 @@ coreDns:
       credentials:
         name: 'alloy-sa-token'
         key: token
+
+cleanPrometheusOperatorObjectNames: true
