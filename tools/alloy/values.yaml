@@ -8,14 +8,12 @@ controller:
 alloy:
   configMap:
     content: |
-      discovery.kubernetes "pods" {
-        role = "pod"
+      prometheus.operator.podmonitors "podmonitors" {
+        forward_to = [prometheus.remote_write.metrics_service.receiver]
       }
 
-      prometheus.scrape "scrape_metrics" {
-        targets         = discovery.kubernetes.pods.targets
-        forward_to      = [prometheus.remote_write.metrics_service.receiver]
-        scrape_interval = "30s"
+      prometheus.operator.servicemonitors "servicemonitors" {
+        forward_to = [prometheus.remote_write.metrics_service.receiver]
       }
 
       prometheus.remote_write "metrics_service" {
