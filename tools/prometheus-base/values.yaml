@@ -23,7 +23,7 @@ prometheusOperator:
 kubeStateMetrics:
   enabled: false
 
-prometheus-node-exporter:
+nodeExporter:
   enabled: false
 
 # Keep the core component Services and ServiceMonitors for Alloy discovery.
