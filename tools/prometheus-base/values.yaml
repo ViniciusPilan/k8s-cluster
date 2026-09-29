@@ -16,6 +16,11 @@ grafana:
 
 prometheus:
   enabled: true
+  agentMode: true
+
+  prometheusSpec:
+    remoteWrite:
+    - url: http://mimir-gateway.mimir.svc.cluster.local/api/v1/push
 
 prometheusOperator:
   enabled: false
