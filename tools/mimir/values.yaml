@@ -3,6 +3,9 @@
 minio:
   enabled: false
 
+kafka:
+  enabled: false
+
 global:
   extraEnvFrom:
     - secretRef:
