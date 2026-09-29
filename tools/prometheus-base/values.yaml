@@ -15,7 +15,7 @@ grafana:
   enabled: false
 
 prometheus:
-  enabled: false
+  enabled: true
 
 prometheusOperator:
   enabled: false
