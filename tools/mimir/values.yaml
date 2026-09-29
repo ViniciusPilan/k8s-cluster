@@ -13,6 +13,10 @@ global:
 
 mimir:
   structuredConfig:
+    ingest_storage:
+      enabled: false
+    ingester:
+      push_grpc_method_enabled: true
     common:
       storage:
         backend: s3
