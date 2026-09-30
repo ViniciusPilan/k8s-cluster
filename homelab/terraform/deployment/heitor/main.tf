@@ -28,5 +28,5 @@ module "worker01" {
     vm_full_name = "homelab-k8s-worker01"
     vm_cpu_cores = "2"
     vm_memory_mb = "6144"
-    vm_ip_cidr   = "192.168.12.21/24"
+    vm_ip_cidr   = "192.168.12.22/24"
 }
