@@ -19,6 +19,11 @@ resource "proxmox_virtual_environment_vm" "vm" {
   }
 
   initialization {
+    user_account {
+      keys     = [var.ssh_public_key]
+      username = var.ssh_username
+    }
+
     ip_config {
       ipv4 {
         address = each.value.ipv4

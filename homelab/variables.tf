@@ -19,6 +19,16 @@ variable "template_vm_id" {
   type        = number
 }
 
+variable "ssh_public_key" {
+  description = "Required OpenSSH public key injected into cloned VMs through cloud-init."
+  type        = string
+}
+
+variable "ssh_username" {
+  description = "Required guest account name to receive ssh_public_key."
+  type        = string
+}
+
 variable "vms" {
   description = "VMs to manage. Add a new uniquely keyed entry for each VM you create."
   type = map(object({
