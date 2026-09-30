@@ -1,10 +1,10 @@
 resource "proxmox_virtual_environment_vm" "vm" {
   name      = var.vm_full_name
-  node_name = var.node_name
+  node_name = var.proxmox_node_name
   started   = true
 
   clone {
-    vm_id = var.template_vm_id
+    vm_id = var.proxmox_template_vm_id
     full  = true
   }
 

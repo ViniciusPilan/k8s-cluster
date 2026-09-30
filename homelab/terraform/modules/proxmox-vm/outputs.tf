@@ -1,9 +1,7 @@
-output "vms" {
-  description = "Created VM names and Proxmox-assigned IDs."
+output "vm" {
+  description = "Created VM name"
   value = {
-    for key, vm in proxmox_virtual_environment_vm.vm : key => {
-      name  = vm.name
-      vm_id = vm.vm_id
-    }
+    name = proxmox_virtual_environment_vm.vm.name
+    vm_id = proxmox_virtual_environment_vm.vm.vm_id
   }
 }
