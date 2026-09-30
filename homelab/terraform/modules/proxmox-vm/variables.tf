@@ -44,3 +44,8 @@ variable "vm_memory_mb" {
 variable "vm_ip_cidr" {
   default = ""
 }
+
+variable "vm_gateway" {
+  description = "IPv4 default gateway for the VM."
+  type        = string
+}

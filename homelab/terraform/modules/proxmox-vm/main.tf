@@ -25,6 +25,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     ip_config {
       ipv4 {
         address = var.vm_ip_cidr
+        gateway = var.vm_gateway
       }
     }
   }
