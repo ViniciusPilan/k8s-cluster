@@ -1,15 +1,15 @@
 #!/bin/bash 
 
+
+# Purpose:
 # This script will create the cluster with the project patterns and base tools:
 # - All Kubernetes components to run applications
 # - Kubernetes Gateway API Custom Resource Definitions (to allow setting of ingress traffic management with GatewayAPI)
-
 
 # Requirements:
 # - Docker installed and daemon running
 # - Kind
 # - kubectl
-
 
 # How to run:
 # $ cd cluster-provisioning/scripts

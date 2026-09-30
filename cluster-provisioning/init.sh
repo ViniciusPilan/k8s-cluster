@@ -1,5 +1,7 @@
 #!/bin/bash 
 
+
+# Purpose:
 # This script will create the cluster with the project patterns and base tools.
 
 # How to run:
