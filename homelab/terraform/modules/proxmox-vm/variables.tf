@@ -9,12 +9,12 @@ variable "proxmox_insecure_tls" {
   default     = false
 }
 
-variable "node_name" {
+variable "proxmox_node_name" {
   description = "Proxmox node where new VMs will be created."
   type        = string
 }
 
-variable "template_vm_id" {
+variable "proxmox_template_vm_id" {
   description = "Numeric VM ID of the existing Proxmox template to clone."
   type        = number
 }
@@ -29,18 +29,18 @@ variable "ssh_username" {
   type        = string
 }
 
-variable "vms" {
-  description = "VMs to manage. Add a new uniquely keyed entry for each VM you create."
-  type = map(object({
-    name       = string
-    cores      = optional(number, 2)
-    memory_mb  = optional(number, 2048)
-    ipv4       = optional(string, "dhcp")
-    gateway    = optional(string)
-  }))
+variable "vm_full_name" {
+  default = ""
+}
 
-  validation {
-    condition     = alltrue([for vm in values(var.vms) : vm.ipv4 == "dhcp" || (can(cidrhost(vm.ipv4, 0)) && can(cidrnetmask(vm.ipv4)))])
-    error_message = "Each VM ipv4 must be 'dhcp' or a valid IPv4 CIDR, such as 192.168.1.50/24."
-  }
+variable "vm_cpu_cores" {
+  default = ""
+}
+
+variable "vm_memory_mb" {
+  default = ""
+}
+
+variable "vm_ip_cidr" {
+  default = ""
 }

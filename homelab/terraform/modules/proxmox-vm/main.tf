@@ -1,7 +1,5 @@
 resource "proxmox_virtual_environment_vm" "vm" {
-  for_each = var.vms
-
-  name      = each.value.name
+  name      = var.vm_full_name
   node_name = var.node_name
   started   = true
 
@@ -11,11 +9,11 @@ resource "proxmox_virtual_environment_vm" "vm" {
   }
 
   cpu {
-    cores = each.value.cores
+    cores = var.vm_cpu_cores
   }
 
   memory {
-    dedicated = each.value.memory_mb
+    dedicated = var.vm_memory_mb
   }
 
   initialization {
@@ -26,8 +24,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
     ip_config {
       ipv4 {
-        address = each.value.ipv4
-        gateway = each.value.ipv4 == "dhcp" ? null : each.value.gateway
+        address = var.vm_ip_cidr
       }
     }
   }
