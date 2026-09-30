@@ -1,6 +1,9 @@
 #!/bin/bash
 
 
+# Purpose:
+# This script is used to create a key pair for access the VMs in the Homelab.
+
 # How to run:
 # $ bash createKeyPair.sh
 

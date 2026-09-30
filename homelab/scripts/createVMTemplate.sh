@@ -1,6 +1,12 @@
 #!/bin/bash
 
 
+# Purpose:
+# This script is used to create a VM template in the Proxmox host.
+
+# Requirements:
+# This script must be executed inside the proxmox host.
+
 # How to run:
 # $ bash createVMTemplate.sh
 
@@ -43,8 +49,6 @@ function configureVMTemplate(){
 
     qm set 9001 --ide2 local-lvm:cloudinit
 
-    # qm set 9001 --ciuser root --cipassword 123 --ipconfig0 ip=dhcp # It should be static
-
     qm set 9001 --boot c --bootdisk scsi0
 
     qm set 9001 --serial0 socket --vga serial0
@@ -63,7 +67,6 @@ function main(){
     setupProxMoxNode
     downloadImage
     configureVMTemplate
-    # Now we have a VM template. Just clone it to create new VMs.
 }
 
 main
