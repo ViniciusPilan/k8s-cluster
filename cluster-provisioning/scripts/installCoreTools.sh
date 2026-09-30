@@ -102,7 +102,7 @@ function installCertManager() {
 
 
 function createIntermediateCASecret() {
-    kubectl create secret tls ca-ingress-tls-secret --cert=../../ca-files/intermediate-ca/certs/intermediate-ca.cert.pem --key=../../ca-files/intermediate-ca/private/intermediate-ca.key.pem -n cert-manager
+    kubectl create secret tls ca-ingress-tls-secret --cert=../../ca-files/intermediate-ca/certs/intermediate-ca.cert.pem --key=../../homelab/ca-files/intermediate-ca/private/intermediate-ca.key.pem -n cert-manager
 }
 
 
