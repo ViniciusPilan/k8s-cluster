@@ -28,6 +28,7 @@ module "controlplane01" {
     vm_full_name = "homelab-k8s-controlplane01"
     vm_cpu_cores = "2"
     vm_memory_mb = "6144"
+    vm_disk_size_gb = 32
     vm_ip_cidr   = "192.168.12.21/24"
 }
 ```
