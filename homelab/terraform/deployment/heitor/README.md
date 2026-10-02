@@ -13,6 +13,10 @@ tofu plan
 tofu apply
 ```
 
+Applying this deployment also writes `ansible/inventory.ini`, with the tools VM,
+Kubernetes control plane, and workers in separate Ansible groups. Run Ansible
+from this directory with `-i ansible/inventory.ini`.
+
 ## Example of a VM creation
 ```tf
 module "controlplane01" {

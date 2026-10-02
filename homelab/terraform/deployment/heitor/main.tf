@@ -1,3 +1,12 @@
+terraform {
+    required_providers {
+        local = {
+            source  = "hashicorp/local"
+            version = "~> 2.5"
+        }
+    }
+}
+
 module "tools" {
     source = "../../modules/proxmox-vm"
 
@@ -52,4 +61,18 @@ module "worker01" {
     vm_disk_size_gb = "128"
     vm_ip_cidr   = "192.168.12.22/24"
     vm_gateway   = "192.168.12.1"
+}
+
+resource "local_file" "ansible_inventory" {
+    filename = "${path.module}/ansible/inventory.ini"
+    content  = <<-EOT
+    [tools]
+    ${module.tools.vm.name} ansible_host=${module.tools.vm.ip} ansible_user=${module.tools.vm.ssh_user}
+
+    [kubernetes_control_plane]
+    ${module.controlplane01.vm.name} ansible_host=${module.controlplane01.vm.ip} ansible_user=${module.controlplane01.vm.ssh_user}
+
+    [kubernetes_workers]
+    ${module.worker01.vm.name} ansible_host=${module.worker01.vm.ip} ansible_user=${module.worker01.vm.ssh_user}
+    EOT
 }
