@@ -1,0 +1,5 @@
+# tls:
+#   certificates:
+#     - certFile: /certs/tools.homelab.internal.cert.pem
+#       keyFile: /certs/tools.homelab.internal.key.pem
+ 
