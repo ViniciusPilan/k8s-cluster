@@ -49,3 +49,9 @@ variable "vm_gateway" {
   description = "IPv4 default gateway for the VM."
   type        = string
 }
+
+variable "vm_disk_size_gb" {
+  description = "Root disk size for the VM in GiB."
+  type        = number
+  default     = 128
+}
