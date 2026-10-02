@@ -39,7 +39,7 @@ module "controlplane01" {
     vm_full_name    = "homelab-k8s-controlplane01"
     vm_cpu_cores    = "4"
     vm_memory_mb    = "4096"
-    vm_disk_size_gb = "128"
+    vm_disk_size_gb = "150"
     vm_ip_cidr      = "192.168.12.21/24"
     vm_gateway      = "192.168.12.1"
 }
@@ -58,7 +58,7 @@ module "worker01" {
     vm_full_name = "homelab-k8s-worker01"
     vm_cpu_cores = "4"
     vm_memory_mb = "6144"
-    vm_disk_size_gb = "128"
+    vm_disk_size_gb = "150"
     vm_ip_cidr   = "192.168.12.22/24"
     vm_gateway   = "192.168.12.1"
 }
