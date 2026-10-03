@@ -30,19 +30,23 @@ variable "ssh_username" {
 }
 
 variable "vm_full_name" {
-  default = ""
+  description = "Full name assigned to the virtual machine."
+  type        = string
 }
 
 variable "vm_cpu_cores" {
-  default = ""
+  description = "Number of CPU cores assigned to the virtual machine."
+  type        = number
 }
 
 variable "vm_memory_mb" {
-  default = ""
+  description = "Amount of memory assigned to the virtual machine, in MiB."
+  type        = number
 }
 
 variable "vm_ip_cidr" {
-  default = ""
+  description = "IPv4 address and prefix assigned to the virtual machine (CIDR notation)."
+  type        = string
 }
 
 variable "vm_gateway" {
@@ -53,5 +57,8 @@ variable "vm_gateway" {
 variable "vm_disk_size_gb" {
   description = "Root disk size for the VM in GiB."
   type        = number
-  default     = 128
+  validation {
+    condition     = var.vm_disk_size_gb > 153.5
+    error_message = "vm_disk_size_gb must be greater than 153.5 GiB."
+  }
 }
